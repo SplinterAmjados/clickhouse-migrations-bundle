@@ -2,12 +2,14 @@
 
 namespace Nalogka\ClickhouseMigrationsBundle\Command;
 
+use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
+#[AsCommand(name: 'clickhouse:migrations:migrate')]
 class MigrationsCommand extends AbstractMigrationCommand
 {
     private const COMMAND_SUCCESS = 0;
@@ -29,7 +31,7 @@ class MigrationsCommand extends AbstractMigrationCommand
             );
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $question = sprintf(
             'WARNING! You are about to execute a migration in database "%s" that could result in schema changes and data loss. Are you sure you wish to continue?',

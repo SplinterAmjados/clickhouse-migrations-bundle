@@ -16,7 +16,7 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "php": ">=7.1",
+        "php": ">=8.3",
         "symfony/config": "*",
         "symfony/dependency-injection": "*",
         "smi2/phpclickhouse": "^1.4",

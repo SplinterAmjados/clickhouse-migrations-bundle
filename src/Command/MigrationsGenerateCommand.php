@@ -2,12 +2,13 @@
 
 namespace Nalogka\ClickhouseMigrationsBundle\Command;
 
-
+use Symfony\Component\Console\Attribute\AsCommand;
 use Nalogka\ClickhouseMigrationsBundle\Migrations\Generator;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+#[AsCommand(name: 'clickhouse:migrations:generate')]
 class MigrationsGenerateCommand extends AbstractMigrationCommand
 {
     private const COMMAND_SUCCESS = 0;
@@ -18,7 +19,7 @@ class MigrationsGenerateCommand extends AbstractMigrationCommand
         $this->setDescription('Generate new empty clickhouse migration');
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $generator = new Generator($this->migrationsManager->getConfiguration());
         $path = $generator->generateMigration();
